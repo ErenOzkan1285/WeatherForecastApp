@@ -11,8 +11,8 @@ This app provides weather forecasts for different locations using data from the 
 - View detailed information including temperature, humidity, and more
 
 ## Screenshots
-![Screenshot 1](https://imgur.com/a/BV20fSE)
-![Screenshot 2](https://imgur.com/a/yCXBrGV)
+![Screenshot 1](C:\Users\ereno\Desktop\weather1.png)
+![Screenshot 2](C:\Users\ereno\Desktop\weather2.png)
 
 ## Getting Started
 1. Clone the repository:
