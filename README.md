@@ -31,9 +31,7 @@ Flutter: v2.2.3
 bloc: v7.0.0
 http: v0.13.3
 Contact
-For any issues or questions, feel free to contact me at your.erenozkan123@hotmail.com.
+For any issues or questions, feel free to contact me at erenozkan123@hotmail.@hotmail.com
 
-License
-This project is licensed under the MIT License.
 
 
