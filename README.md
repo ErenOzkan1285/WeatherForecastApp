@@ -11,8 +11,8 @@ This app provides weather forecasts for different locations using data from the 
 - View detailed information including temperature, humidity, and more
 
 ## Screenshots
-![Screenshot 1](C:\Users\ereno\Desktop\weather1.png)
-![Screenshot 2](C:\Users\ereno\Desktop\weather2.png)
+![Screenshot 1](https://imgur.com/a/BV20fSE)
+![Screenshot 2](https://imgur.com/a/yCXBrGV)
 
 ## Getting Started
 1. Clone the repository:
@@ -31,9 +31,7 @@ Flutter: v2.2.3
 bloc: v7.0.0
 http: v0.13.3
 Contact
-For any issues or questions, feel free to contact me at your.erenozkan123@hotmail.com.
+For any issues or questions, feel free to contact me at erenozkan123@hotmail.@hotmail.com
 
-License
-This project is licensed under the MIT License.
 
 
