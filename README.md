@@ -11,10 +11,10 @@ This app provides weather forecasts for different locations using data from the 
 - View detailed information including temperature, humidity, and more
 
 ## Screenshots
-![Screenshot 1] (![weather1](https://github.com/ErenOzkan1285/WeatherForecastApp/assets/63377181/d7096e60-03c6-4a54-abda-985fae2fa2c0))
+(![weather1](https://github.com/ErenOzkan1285/WeatherForecastApp/assets/63377181/d7096e60-03c6-4a54-abda-985fae2fa2c0))
 
 
-![Screenshot 2] (![weather2](https://github.com/ErenOzkan1285/WeatherForecastApp/assets/63377181/e8fe3979-b9bf-40e9-bd7c-5aeebd9afd07))
+(![weather2](https://github.com/ErenOzkan1285/WeatherForecastApp/assets/63377181/e8fe3979-b9bf-40e9-bd7c-5aeebd9afd07))
 
 
 ## Getting Started
