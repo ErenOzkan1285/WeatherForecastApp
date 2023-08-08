@@ -1,6 +1,7 @@
 Weather Forecast App
 
 Welcome to my weather forecast app!
+This is my first flutter app
 
 ## Description
 This app provides weather forecasts for different locations using data from the OpenWeatherMap API.
