@@ -19,16 +19,23 @@ This app provides weather forecasts for different locations using data from the 
 
 ## Getting Started
 1. Clone the repository:
- ```git clone https://github.com/ErenOzkan1285/WeatherForecastApp.git ```
+```
+git clone https://github.com/ErenOzkan1285/WeatherForecastApp.git
+
+```
 
 Install dependencies:
 
 Copy code
-```flutter pub get```
+```
+flutter pub get
+```
 Run the app:
 
 Copy code
-```flutter run```
+```
+flutter run
+```
 Dependencies
 Flutter: v2.2.3
 bloc: v7.0.0
