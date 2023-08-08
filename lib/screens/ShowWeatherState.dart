@@ -1,10 +1,12 @@
 // ignore: file_names
 // ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../bloc/WeatherBloc.dart';
 import '../models/WeatherModel.dart';
 import '../services/service_locator.dart';
+import 'package:project2/screens/view_photos_widget.dart';
 
 class _ShowWeatherState extends State<ShowWeather> {
   String getDayOfWeekFromEpoch(int epoch) {
@@ -36,9 +38,9 @@ class _ShowWeatherState extends State<ShowWeather> {
     'Sunday',
   ];
 
+  bool isImageLoading = true;
   @override
   Widget build(BuildContext context) {
-    //final WeatherBloc weatherBloc = s1<WeatherBloc>();
     return Column(
       children: [
         Container(
@@ -63,16 +65,27 @@ class _ShowWeatherState extends State<ShowWeather> {
                   ),
                 ],
               ),
+              //http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png
               Padding(
                 padding: const EdgeInsets.only(top: 30),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Image.network(
-                      "http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png",
-                      width: 150,
-                      height: 150,
-                      fit: BoxFit.cover,
+                    CachedNetworkImage(
+                      imageUrl:
+                          "http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png",
+                      imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover),
+                        ),
+                        width: 150,
+                        height: 150,
+                      ),
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(10, 20, 0, 0),
@@ -83,7 +96,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${widget.weather.list[0].main.temp.round()}",
+                                "${widget.weather.list[0].main.temp!.round()}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 40,
@@ -99,11 +112,11 @@ class _ShowWeatherState extends State<ShowWeather> {
                             ],
                           ),
                           Text(
-                            "Max: ${widget.weather.list[0].main.tempMax.round()}°C ",
+                            "Max: ${widget.weather.list[0].main.tempMax!.round()}°C ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "Min:  ${widget.weather.list[0].main.tempMin.round()}°C ",
+                            "Min:  ${widget.weather.list[0].main.tempMin!.round()}°C ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
@@ -213,20 +226,16 @@ class _ShowWeatherState extends State<ShowWeather> {
                     children: [
                       Column(
                         children: [
-                          Image.network(
-                            "http://openweathermap.org/img/w/${widget.weather.list[4].weather[0].icon}.png",
-                            width: 70,
-                            height: 70,
-                            fit: BoxFit.cover,
-                          ),
+                          PhotoView(
+                              icon: widget.weather.list[4].weather[0].icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[3].main.tempMax.round()}°C ",
+                                "${widget.weather.list[3].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[3].main.feels_like.round()}°C",
+                                "${widget.weather.list[3].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -235,20 +244,16 @@ class _ShowWeatherState extends State<ShowWeather> {
                       ),
                       Column(
                         children: [
-                          Image.network(
-                            "http://openweathermap.org/img/w/${widget.weather.list[8].weather[0].icon}.png",
-                            width: 70,
-                            height: 70,
-                            fit: BoxFit.cover,
-                          ),
+                          PhotoView(
+                              icon: widget.weather.list[8].weather[0].icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[11].main.tempMax.round()}°C ",
+                                "${widget.weather.list[11].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[11].main.feels_like.round()}°C",
+                                "${widget.weather.list[11].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -257,20 +262,16 @@ class _ShowWeatherState extends State<ShowWeather> {
                       ),
                       Column(
                         children: [
-                          Image.network(
-                            "http://openweathermap.org/img/w/${widget.weather.list[12].weather[0].icon}.png",
-                            width: 70,
-                            height: 70,
-                            fit: BoxFit.cover,
-                          ),
+                          PhotoView(
+                              icon: widget.weather.list[12].weather[0].icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[19].main.tempMax.round()}°C ",
+                                "${widget.weather.list[19].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[19].main.feels_like.round()}°C",
+                                "${widget.weather.list[19].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -279,20 +280,16 @@ class _ShowWeatherState extends State<ShowWeather> {
                       ),
                       Column(
                         children: [
-                          Image.network(
-                            "http://openweathermap.org/img/w/${widget.weather.list[16].weather[0].icon}.png",
-                            width: 70,
-                            height: 70,
-                            fit: BoxFit.cover,
-                          ),
+                          PhotoView(
+                              icon: widget.weather.list[16].weather[0].icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[27].main.tempMax.round()}°C ",
+                                "${widget.weather.list[27].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[27].main.feels_like.round()}°C",
+                                "${widget.weather.list[27].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -301,20 +298,16 @@ class _ShowWeatherState extends State<ShowWeather> {
                       ),
                       Column(
                         children: [
-                          Image.network(
-                            "http://openweathermap.org/img/w/${widget.weather.list[20].weather[0].icon}.png",
-                            width: 70,
-                            height: 70,
-                            fit: BoxFit.cover,
-                          ),
+                          PhotoView(
+                              icon: widget.weather.list[20].weather[0].icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[35].main.tempMax.round()}°C ",
+                                "${widget.weather.list[35].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[35].main.feels_like.round()}°C",
+                                "${widget.weather.list[35].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
