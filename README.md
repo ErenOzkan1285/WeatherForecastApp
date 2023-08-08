@@ -20,7 +20,7 @@ This app provides weather forecasts for different locations using data from the 
 ## Getting Started
 1. Clone the repository:
  ```sh
- git clone https://github.com/ErenOzkan1285/WeatherForecastApp.git
+git clone https://github.com/ErenOzkan1285/WeatherForecastApp.git ``` 
 
 Install dependencies:
 
