@@ -7,6 +7,7 @@ import '../bloc/WeatherBloc.dart';
 import '../models/WeatherModel.dart';
 import '../services/service_locator.dart';
 import 'package:project2/screens/view_photos_widget.dart';
+import 'popup_widget.dart';
 
 class _ShowWeatherState extends State<ShowWeather> {
   String getDayOfWeekFromEpoch(int epoch) {
@@ -41,10 +42,18 @@ class _ShowWeatherState extends State<ShowWeather> {
   bool isImageLoading = true;
   @override
   Widget build(BuildContext context) {
+    List<String> currentDays = [
+      getDayOfWeekFromEpoch(widget.weather.list[3].dt.toInt()),
+      getDayOfWeekFromEpoch(widget.weather.list[11].dt.toInt()),
+      getDayOfWeekFromEpoch(widget.weather.list[19].dt.toInt()),
+      getDayOfWeekFromEpoch(widget.weather.list[27].dt.toInt()),
+      getDayOfWeekFromEpoch(widget.weather.list[35].dt.toInt()),
+    ];
+
     return Column(
       children: [
         Container(
-          color: Colors.grey[900],
+          color: const Color.fromARGB(255, 8, 55, 136),
           height: MediaQuery.of(context).size.height - 130,
           margin: const EdgeInsets.all(2),
           padding: const EdgeInsets.only(top: 40, left: 0, right: 0),
@@ -67,7 +76,7 @@ class _ShowWeatherState extends State<ShowWeather> {
               ),
               //http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png
               Padding(
-                padding: const EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.fromLTRB(10, 30, 0, 0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -131,6 +140,20 @@ class _ShowWeatherState extends State<ShowWeather> {
                             "Date:  ${widget.weather.list[0].dtTxt} ",
                             style: const TextStyle(color: Colors.white),
                           ),
+                          ElevatedButton(
+                            onPressed: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return ShowDetailsDialog(
+                                    weather: widget.weather,
+                                    currentDays: currentDays,
+                                  ); // Ayrı bir widget çağırılıyor
+                                },
+                              );
+                            },
+                            child: Text("Details"),
+                          )
                         ],
                       ),
                     ),
@@ -341,6 +364,8 @@ class _ShowWeatherState extends State<ShowWeather> {
     );
   }
 }
+
+class _showDetailsDialog {}
 
 class ShowWeather extends StatefulWidget {
   final WeatherModel weather;

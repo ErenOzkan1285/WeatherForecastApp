@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       ),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.grey[900],
+        backgroundColor: const Color.fromARGB(255, 8, 55, 136),
         body: BlocProvider(
           create: (context) => s1<WeatherBloc>(),
           child: SearchPage(),
