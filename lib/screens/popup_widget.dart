@@ -17,7 +17,7 @@ class ShowDetailsDialog extends StatelessWidget {
         width: 300,
         height: 500,
         child: SfCartesianChart(
-          title: ChartTitle(text: 'Sample Chart'),
+          title: ChartTitle(text: 'Average Temperature'),
           legend: Legend(isVisible: true),
           series: <CartesianSeries>[
             LineSeries<DataPoint, String>(
