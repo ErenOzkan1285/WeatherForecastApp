@@ -5,7 +5,6 @@ import 'package:project2/services/WeatherRepo.dart';
 
 class WeatherEvent extends Equatable {
   @override
-
   List<Object> get props => [];
 }
 
@@ -43,7 +42,6 @@ class WeatherIsError extends WeatherState {
   WeatherIsError(this.errorMessage);
 }
 
-
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   final WeatherRepo weatherRepo;
 
@@ -57,8 +55,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
       try {
         WeatherModel weather = await weatherRepo.getWeather(event.city);
         // ignore: invalid_use_of_visible_for_testing_member
-        emit(WeatherIsLoaded(
-            weather)); // Use WeatherModel instead of Map<String, dynamic>
+        emit(WeatherIsLoaded(weather));
       } catch (error) {
         // ignore: invalid_use_of_visible_for_testing_member
         emit(WeatherIsError("An error occurred while fetching weather data."));
