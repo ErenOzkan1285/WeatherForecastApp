@@ -6,6 +6,6 @@ import '../bloc/WeatherBloc.dart';
 GetIt s1 = GetIt.instance;
 
 void setUpLocators() {
-  s1.registerSingleton(WeatherBloc(WeatherRepo()));
   s1.registerSingleton<Dio>(Dio());
+  s1.registerSingleton(WeatherBloc(WeatherRepo()));
 }
