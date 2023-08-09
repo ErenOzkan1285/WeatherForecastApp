@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:project2/models/WeatherModel.dart';
@@ -50,14 +52,18 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {
     if (event is FetchWeather) {
+      // ignore: invalid_use_of_visible_for_testing_member
       emit(WeatherIsLoading());
       try {
         final weather = await weatherRepo.getWeather(event.city);
+        // ignore: invalid_use_of_visible_for_testing_member
         emit(WeatherIsLoaded(weather));
       } catch (error) {
+        // ignore: invalid_use_of_visible_for_testing_member
         emit(WeatherIsError("An error occurred while fetching weather data."));
       }
     } else if (event is ResetWeather) {
+      // ignore: invalid_use_of_visible_for_testing_member
       emit(WeatherIsNotSearched());
     }
   }
