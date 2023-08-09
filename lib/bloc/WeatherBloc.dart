@@ -2,6 +2,7 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:project2/core/app_configuration/dependency_configuration.dart';
 import 'package:project2/models/WeatherModel.dart';
 import 'package:project2/services/WeatherRepo.dart';
 
@@ -45,9 +46,9 @@ class WeatherIsError extends WeatherState {
 }
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  final WeatherRepo weatherRepo;
+  final WeatherRepo weatherRepo = getIt.get<WeatherRepo>();
 
-  WeatherBloc(this.weatherRepo) : super(WeatherIsNotSearched());
+  WeatherBloc(WeatherRepo weatherRepo) : super(WeatherIsNotSearched());
 
   @override
   Stream<WeatherState> mapEventToState(WeatherEvent event) async* {

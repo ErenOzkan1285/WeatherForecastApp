@@ -1,21 +1,33 @@
-import 'package:dio/dio.dart';
-import 'package:get_it/get_it.dart';
+import 'dart:developer';
+import 'dart:io';
+
+import 'package:project2/core/dio_manager/dio_http_client.dart';
 import 'package:project2/models/WeatherModel.dart';
 
 class WeatherRepo {
-  final _dio = GetIt.I<Dio>();
-  Future<WeatherModel> getWeather(String city) async {
-    final response = await _dio.request(
-      'https://api.openweathermap.org/data/2.5/forecast',
-      queryParameters: {
-        'q': city,
-        'appid': '21b1e841e74c140028309c355d6bcc46',
-        'units': 'metric',
-        'cnt': '40'
-      },
-      options: Options(method: 'GET'),
-    );
+  DioHttpClient? _dioHttpClient;
+  WeatherRepo(DioHttpClient dioHttpClient) {
+    _dioHttpClient = dioHttpClient;
+  }
 
-    return WeatherModel.fromJson(response.data);
+  Future<WeatherModel> getWeather(String city) async {
+    try {
+      final response = await _dioHttpClient!.get(
+        'data/2.5/forecast',
+        queryParams: {
+          'q': city,
+          'appid': '21b1e841e74c140028309c355d6bcc46',
+          'units': 'metric',
+          'cnt': '40'
+        },
+      );
+      if (response.statusCode == HttpStatus.ok) {
+        return WeatherModel.fromJson(response.data);
+      }
+      return WeatherModel();
+    } catch (e) {
+      log(e.toString());
+      return WeatherModel();
+    }
   }
 }

@@ -4,11 +4,12 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:project2/core/app_configuration/dependency_configuration.dart';
 import '../bloc/WeatherBloc.dart';
 import '../models/WeatherModel.dart';
-import '../services/service_locator.dart';
-import 'package:project2/screens/view_photos_widget.dart';
+import 'package:project2/core/constants/view_photos_widget.dart';
 import 'popup_widget.dart';
+import 'package:project2/core/constants/app_constants.dart';
 
 class _ShowWeatherState extends State<ShowWeather> {
   String getDayOfWeekFromEpoch(int epoch) {
@@ -44,11 +45,11 @@ class _ShowWeatherState extends State<ShowWeather> {
   @override
   Widget build(BuildContext context) {
     List<String> currentDays = [
-      getDayOfWeekFromEpoch(widget.weather.list[3].dt.toInt()),
-      getDayOfWeekFromEpoch(widget.weather.list[11].dt.toInt()),
-      getDayOfWeekFromEpoch(widget.weather.list[19].dt.toInt()),
-      getDayOfWeekFromEpoch(widget.weather.list[27].dt.toInt()),
-      getDayOfWeekFromEpoch(widget.weather.list[35].dt.toInt()),
+      getDayOfWeekFromEpoch(((widget.weather.list ?? []))[3].dt.toInt()),
+      getDayOfWeekFromEpoch(((widget.weather.list ?? []))[11].dt.toInt()),
+      getDayOfWeekFromEpoch(((widget.weather.list ?? []))[19].dt.toInt()),
+      getDayOfWeekFromEpoch(((widget.weather.list ?? []))[27].dt.toInt()),
+      getDayOfWeekFromEpoch(((widget.weather.list ?? []))[35].dt.toInt()),
     ];
 
     return Column(
@@ -65,7 +66,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                   Expanded(
                     child: Center(
                       child: Text(
-                        "Results for: ${widget.weather.city.name}, ${widget.weather.city.country}",
+                        "Results for: ${widget.weather.city?.name}, ${widget.weather.city?.country}",
                         style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
@@ -75,7 +76,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                   ),
                 ],
               ),
-              //http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png
+             
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                 child: Row(
@@ -83,7 +84,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                   children: [
                     CachedNetworkImage(
                       imageUrl:
-                          "http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png",
+                          "${Constants.baseUrl}img/w/${((widget.weather.list ?? []))[0].weather[0].icon}.png",
                       imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                           image: DecorationImage(
@@ -106,7 +107,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "${widget.weather.list[0].main.temp!.round()}",
+                                "${(widget.weather.list ?? [])[0].main.temp!.round()}",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 40,
@@ -122,23 +123,23 @@ class _ShowWeatherState extends State<ShowWeather> {
                             ],
                           ),
                           Text(
-                            "Max: ${widget.weather.list[0].main.tempMax!.round()}°C ",
+                            "Max: ${(widget.weather.list ?? [])[0].main.tempMax!.round()}°C ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "Min:  ${widget.weather.list[0].main.tempMin!.round()}°C ",
+                            "Min:  ${(widget.weather.list ?? [])[0].main.tempMin!.round()}°C ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "Humidity:  %${widget.weather.list[0].main.humidity} ",
+                            "Humidity:  %${(widget.weather.list ?? [])[0].main.humidity} ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "Description:  ${widget.weather.list[0].weather[0].description.toUpperCase()} ",
+                            "Description:  ${(widget.weather.list ?? [])[0].weather[0].description.toUpperCase()} ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           Text(
-                            "Date:  ${widget.weather.list[0].dtTxt} ",
+                            "Date:  ${(widget.weather.list ?? [])[0].dtTxt} ",
                             style: const TextStyle(color: Colors.white),
                           ),
                           ElevatedButton(
@@ -176,7 +177,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                               width: 70,
                               child: Text(
                                 getDayOfWeekFromEpoch(
-                                    widget.weather.list[3].dt.toInt()),
+                                    (widget.weather.list ?? [])[3].dt.toInt()),
                                 style: TextStyle(color: Colors.white),
                               ),
                             )
@@ -190,7 +191,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                               width: 70,
                               child: Text(
                                 getDayOfWeekFromEpoch(
-                                    widget.weather.list[11].dt.toInt()),
+                                    (widget.weather.list ?? [])[11].dt.toInt()),
                                 style: TextStyle(color: Colors.white),
                               ),
                             )
@@ -204,7 +205,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                               width: 70,
                               child: Text(
                                 getDayOfWeekFromEpoch(
-                                    widget.weather.list[19].dt.toInt()),
+                                    (widget.weather.list ?? [])[19].dt.toInt()),
                                 style: TextStyle(color: Colors.white),
                               ),
                             )
@@ -218,7 +219,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                               width: 70,
                               child: Text(
                                 getDayOfWeekFromEpoch(
-                                    widget.weather.list[27].dt.toInt()),
+                                    (widget.weather.list ?? [])[27].dt.toInt()),
                                 style: TextStyle(color: Colors.white),
                               ),
                             )
@@ -232,7 +233,7 @@ class _ShowWeatherState extends State<ShowWeather> {
                               width: 70,
                               child: Text(
                                 getDayOfWeekFromEpoch(
-                                    widget.weather.list[35].dt.toInt()),
+                                    (widget.weather.list ?? [])[35].dt.toInt()),
                                 style: TextStyle(color: Colors.white),
                               ),
                             )
@@ -251,15 +252,17 @@ class _ShowWeatherState extends State<ShowWeather> {
                       Column(
                         children: [
                           PhotoView(
-                              icon: widget.weather.list[4].weather[0].icon),
+                              icon: (widget.weather.list ?? [])[4]
+                                  .weather[0]
+                                  .icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[3].main.tempMax!.round()}°C ",
+                                "${(widget.weather.list ?? [])[3].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[3].main.feels_like!.round()}°C",
+                                "${(widget.weather.list ?? [])[3].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -269,15 +272,17 @@ class _ShowWeatherState extends State<ShowWeather> {
                       Column(
                         children: [
                           PhotoView(
-                              icon: widget.weather.list[8].weather[0].icon),
+                              icon: (widget.weather.list ?? [])[8]
+                                  .weather[0]
+                                  .icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[11].main.tempMax!.round()}°C ",
+                                "${(widget.weather.list ?? [])[11].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[11].main.feels_like!.round()}°C",
+                                "${(widget.weather.list ?? [])[11].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -287,15 +292,17 @@ class _ShowWeatherState extends State<ShowWeather> {
                       Column(
                         children: [
                           PhotoView(
-                              icon: widget.weather.list[12].weather[0].icon),
+                              icon: (widget.weather.list ?? [])[12]
+                                  .weather[0]
+                                  .icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[19].main.tempMax!.round()}°C ",
+                                "${(widget.weather.list ?? [])[19].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[19].main.feels_like!.round()}°C",
+                                "${(widget.weather.list ?? [])[19].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -305,15 +312,17 @@ class _ShowWeatherState extends State<ShowWeather> {
                       Column(
                         children: [
                           PhotoView(
-                              icon: widget.weather.list[16].weather[0].icon),
+                              icon: (widget.weather.list ?? [])[16]
+                                  .weather[0]
+                                  .icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[27].main.tempMax!.round()}°C ",
+                                "${(widget.weather.list ?? [])[27].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[27].main.feels_like!.round()}°C",
+                                "${(widget.weather.list ?? [])[27].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -323,15 +332,17 @@ class _ShowWeatherState extends State<ShowWeather> {
                       Column(
                         children: [
                           PhotoView(
-                              icon: widget.weather.list[20].weather[0].icon),
+                              icon: (widget.weather.list ?? [])[20]
+                                  .weather[0]
+                                  .icon),
                           Row(
                             children: [
                               Text(
-                                "${widget.weather.list[35].main.tempMax!.round()}°C ",
+                                "${(widget.weather.list ?? [])[35].main.tempMax!.round()}°C ",
                                 style: TextStyle(color: Colors.white),
                               ),
                               Text(
-                                "${widget.weather.list[35].main.feels_like!.round()}°C",
+                                "${(widget.weather.list ?? [])[35].main.feels_like!.round()}°C",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ],
@@ -348,7 +359,7 @@ class _ShowWeatherState extends State<ShowWeather> {
         ElevatedButton(
           onPressed: () {
             //BlocProvider.of<WeatherBloc>(context).add(ResetWeather());
-            s1<WeatherBloc>().add(ResetWeather());
+            getIt<WeatherBloc>().add(ResetWeather());
           },
           style: ElevatedButton.styleFrom(
               shape: RoundedRectangleBorder(

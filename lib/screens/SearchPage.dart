@@ -2,7 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:project2/services/service_locator.dart';
 import '../bloc/WeatherBloc.dart';
 import 'ShowWeatherState.dart';
 
@@ -91,7 +90,7 @@ class SearchPage extends StatelessWidget {
                         ),
                         onPressed: () {
                           //weatherBloc.add(FetchWeather(cityController.text));
-                          s1<WeatherBloc>()
+                          getIt<WeatherBloc>()
                               .add(FetchWeather(cityController.text));
                         },
                         child: const Text(
@@ -120,7 +119,7 @@ class SearchPage extends StatelessWidget {
                       onPressed: () {
                         //Using service locator
                         //weatherBloc.add(ResetWeather());
-                        s1<WeatherBloc>().add(ResetWeather());
+                        getIt<WeatherBloc>().add(ResetWeather());
                       },
                       child: const Text("Search Again"),
                     ),

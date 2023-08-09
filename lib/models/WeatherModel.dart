@@ -8,18 +8,18 @@ part 'WeatherModel.g.dart';
 @JsonSerializable(explicitToJson: true)
 class WeatherModel {
   WeatherModel({
-    required this.cod,
-    required this.message,
-    required this.list,
-    required this.city,
+    this.cod,
+    this.message,
+    this.list,
+    this.city,
   });
-  final String cod;
-  final int message;
-  final List<WeatherData> list;
+  final String? cod;
+  final int? message;
+  final List<WeatherData>? list;
 
   @JsonKey(fromJson: _cityFromJson, toJson: _cityToJson)
   @CityConverter()
-  final City city;
+  final City? city;
 
   factory WeatherModel.fromJson(Map<String, dynamic> data) =>
       _$WeatherModelFromJson(data);
@@ -115,17 +115,17 @@ class Clouds {
 @JsonSerializable()
 class City {
   City({
-    required this.id,
-    required this.name,
-    required this.country,
-    required this.population,
-    required this.timezone,
+    this.id,
+    this.name,
+    this.country,
+    this.population,
+    this.timezone,
   });
-  final int id;
-  final String name;
-  final String country;
-  final int population;
-  final int timezone;
+  final int? id;
+  final String? name;
+  final String? country;
+  final int? population;
+  final int? timezone;
 
   factory City.fromJson(Map<String, dynamic> data) => _$CityFromJson(data);
 

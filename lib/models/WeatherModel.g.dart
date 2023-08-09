@@ -19,8 +19,8 @@ Map<String, dynamic> _$WeatherModelToJson(WeatherModel instance) =>
     <String, dynamic>{
       'cod': instance.cod,
       'message': instance.message,
-      'list': instance.list.map((e) => e.toJson()).toList(),
-      'city': WeatherModel._cityToJson(instance.city),
+      'list': (instance.list ?? []).map((e) => e.toJson()).toList(),
+      'city': WeatherModel._cityToJson(instance.city ?? City()),
     };
 
 WeatherData _$WeatherDataFromJson(Map<String, dynamic> json) => WeatherData(
