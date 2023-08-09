@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class PhotoView extends StatelessWidget {
   final String icon;
 
-  PhotoView({super.key, required this.icon});
+  const PhotoView({super.key, required this.icon});
 
   @override
   Widget build(BuildContext context) {

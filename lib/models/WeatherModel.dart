@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+// ignore: depend_on_referenced_packages
 import 'package:json_annotation/json_annotation.dart';
 
 part 'WeatherModel.g.dart';
@@ -61,6 +64,7 @@ class Main {
     required this.tempMin,
     required this.tempMax,
     required this.humidity,
+    // ignore: non_constant_identifier_names
     required this.feels_like,
   });
   final double? temp;
@@ -69,6 +73,7 @@ class Main {
   @JsonKey(name: "temp_max")
   final double? tempMax;
   final int? humidity;
+  // ignore: non_constant_identifier_names
   final double? feels_like;
 
   factory Main.fromJson(Map<String, dynamic> data) => _$MainFromJson(data);

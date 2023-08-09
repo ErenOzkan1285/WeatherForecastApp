@@ -4,7 +4,8 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import '../models/WeatherModel.dart';
 
 class ShowDetailsDialog extends StatelessWidget {
-  ShowDetailsDialog({required this.weather, required this.currentDays});
+  const ShowDetailsDialog(
+      {super.key, required this.weather, required this.currentDays});
 
   final WeatherModel weather;
   final List<String> currentDays;
@@ -12,13 +13,13 @@ class ShowDetailsDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Details'),
-      content: Container(
+      title: const Text('Details'),
+      content: SizedBox(
         width: 300,
         height: 500,
         child: SfCartesianChart(
           title: ChartTitle(text: 'Average Temperature'),
-          legend: Legend(isVisible: true),
+          legend: const Legend(isVisible: true),
           series: <CartesianSeries>[
             LineSeries<DataPoint, String>(
               dataSource: <DataPoint>[
@@ -48,7 +49,7 @@ class ShowDetailsDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(); // Pop-up'ı kapat
           },
-          child: Text('Close'),
+          child: const Text('Close'),
         ),
       ],
     );

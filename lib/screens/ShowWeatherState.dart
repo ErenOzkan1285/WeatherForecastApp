@@ -1,5 +1,6 @@
+// ignore: duplicate_ignore
 // ignore: file_names
-// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables
+// ignore_for_file: prefer_const_constructors, prefer_typing_uninitialized_variables, file_names
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -365,7 +366,7 @@ class _ShowWeatherState extends State<ShowWeather> {
   }
 }
 
-class _showDetailsDialog {}
+// ignore: camel_case_types
 
 class ShowWeather extends StatefulWidget {
   final WeatherModel weather;
