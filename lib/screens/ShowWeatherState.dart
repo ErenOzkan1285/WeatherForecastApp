@@ -76,7 +76,7 @@ class _ShowWeatherState extends State<ShowWeather> {
               ),
               //http://openweathermap.org/img/w/${widget.weather.list[0].weather[0].icon}.png
               Padding(
-                padding: const EdgeInsets.fromLTRB(10, 30, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
